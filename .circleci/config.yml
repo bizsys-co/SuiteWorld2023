@@ -33,7 +33,7 @@ jobs:
           command: npm run test
   netsuite-deploy:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/openjdk:17.0.7-node
     steps:
       - checkout
       - node/install:
