@@ -9,7 +9,9 @@ orbs:
 workflows:
   netsuite:
     jobs:
-      - netsuite-tests
+      - netsuite-tests:
+          post-steps:
+            - jira/notify
       - netsuite-deploy:
           requires:
             - netsuite-tests
