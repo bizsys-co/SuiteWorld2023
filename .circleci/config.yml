@@ -8,10 +8,7 @@ orbs:
 workflows:
   netsuite:
     jobs:
-      - build-env
-      - netsuite-tests:
-          requires:
-            - build-env
+      - netsuite-tests
       - netsuite-deploy:
           requires:
             - netsuite-tests
@@ -21,10 +18,7 @@ workflows:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  build-env:
-    #working_directory: ~/SimpleSuitelet
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  netsuite-tests:
     docker:
       - image: cimg/base:stable
     # Add steps to the job
@@ -34,12 +28,6 @@ jobs:
       - node/install:
           node-version: "18.16.0"
       - node/install-packages
-  netsuite-tests:
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
       - run:
           name: 'Run Suitelet Tests'
           command: npm run test
@@ -47,6 +35,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
+      - node/install:
+          node-version: "18.16.0"
+      - node/install-packages
       - run:
           name: 'Install SuiteCloud'
           command: npm install -g --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
