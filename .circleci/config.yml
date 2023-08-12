@@ -37,8 +37,10 @@ jobs:
       - run:
           name: 'Run Suitelet Tests'
           command: npm run test
+      - store_artifacts:
+          path: test-reports
       - store_test_results:
-          path: /tmp/test-reports
+          path: test-reports
   netsuite-deploy:
     docker:
       - image: cimg/openjdk:17.0.7-node
@@ -55,8 +57,10 @@ jobs:
           command: suitecloud account:savetoken --account $NS_ACCOUNTID --authid autoDeploy --tokenid $NS_TOKENID --tokensecret $NS_TOKENSECRET
       - run:
           name: 'Deploy NetSuite'
-          command: suitecloud project:deploy > tmp/deploy
+          command: suitecloud project:deploy > deploy
       - store_artifacts:
-          path: /tmp/deploy
+          path: deploy
+      - store_artifacts:
+          path: test-reports
       - store_test_results:
-          path: /tmp/test-reports
+          path: test-reports

@@ -2,7 +2,7 @@
   "name": "suitecloud-project",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest --outputFile=./tmp/test-reports --json"
+    "test": "jest --outputFile=test-reports --json"
   },
   "devDependencies": {
     "jest": "29.5.0",
