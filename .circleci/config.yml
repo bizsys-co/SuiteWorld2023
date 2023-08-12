@@ -9,15 +9,18 @@ orbs:
 workflows:
   netsuite:
     jobs:
-      - netsuite-tests:
-          post-steps:
-            - jira/notify
+      - netsuite-tests
       - netsuite-deploy:
           requires:
             - netsuite-tests
           filters:
             branches:
               only: main
+          post-steps:
+            - jira/notify:
+                environment: production
+                environment_type: production
+                job_type: deployment
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -51,5 +54,3 @@ jobs:
       - run:
           name: 'Deploy NetSuite'
           command: suitecloud project:deploy
-      - jira/notify:
-          job_type: deployment
