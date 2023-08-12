@@ -55,4 +55,6 @@ jobs:
           command: suitecloud account:savetoken --account $NS_ACCOUNTID --authid autoDeploy --tokenid $NS_TOKENID --tokensecret $NS_TOKENSECRET
       - run:
           name: 'Deploy NetSuite'
-          command: suitecloud project:deploy
+          command: suitecloud project:deploy > /tmp/deploy
+      - store_artifacts:
+          path: /tmp/deploy
