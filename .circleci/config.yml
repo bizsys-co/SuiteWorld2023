@@ -38,7 +38,7 @@ jobs:
           name: 'Run Suitelet Tests'
           command: npm run test
       - store_test_results:
-          path: tmp/test-reports
+          path: test-reports
   netsuite-deploy:
     docker:
       - image: cimg/openjdk:17.0.7-node
