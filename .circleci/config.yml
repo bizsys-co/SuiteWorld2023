@@ -53,3 +53,5 @@ jobs:
       - run:
           name: 'Deploy NetSuite'
           command: suitecloud project:deploy
+      - jira/notify:
+          job_type: deployment
