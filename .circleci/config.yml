@@ -57,7 +57,6 @@ jobs:
           name: 'Deploy NetSuite'
           command: suitecloud project:deploy > deploy
       - store_artifacts:
-          path: /deploy
-          path: /test-reports
+          path: deploy
       - store_test_results:
-          path: /test-reports
+          path: test-reports
