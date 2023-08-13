@@ -32,7 +32,6 @@ define([
                     }
                 });
                 log.audit('Cust Saved', savedId);
-                log.debug('Test Log', true);
                 let customerLookup = getCustomerDetails(customerId);
                 buildPostForm(form, customerLookup);
             }
