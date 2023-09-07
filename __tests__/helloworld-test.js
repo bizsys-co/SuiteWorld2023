@@ -29,7 +29,7 @@ describe('Suitelet GET Test', () => {
         };
 
         const customerLookup = {
-            comments: 'Foo Bar',
+            comments: 'Test Comment',
             internalid: [
                 {
                     value: 6,
